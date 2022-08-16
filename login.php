@@ -24,19 +24,11 @@
           }else {
             if($row['active']==1){
              $message="user is acive";
-<<<<<<< HEAD
             //  alert("JavaScript Alert Box by PHP");
             header('location: user.php');
             }else{
               $message="user is not active";
             }
-            
-=======
-            }else{
-              $message="user is not active";
-            }
-            // header('location: user.php');
->>>>>>> 88fed02fe57f9e5d288d0fcb6d78c94d608be04f
             
           }
           // 
@@ -88,15 +80,7 @@
 
               <button name="submit" value="Submit" class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
               
-<<<<<<< HEAD
               <?php if($message!="") { echo'<div class="alert alert-success">'.$message.'</div>'; } ?>
-=======
-              <div class=".container-sm p-3 my-3 bg-primary text-white" style="font-size: 17px" >
-                <br><?php if($message!="") { echo $message; } ?>
-                <br>
-                <br>
-              </div>
->>>>>>> 88fed02fe57f9e5d288d0fcb6d78c94d608be04f
 
               <div class="d-flex justify-content-center text-center mt-4 pt-1">
                 <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
