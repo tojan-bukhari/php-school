@@ -8,6 +8,7 @@ session_start();
       $user_name = $_POST['user_name'];
       $email 	= $_POST['email'];
       $password = $_POST['pass'];
+      $_SESSION["user_name"]=$user_name;
       $options = array("cost"=>4);
       $hashPassword = password_hash($password,PASSWORD_BCRYPT,$options);
       
@@ -122,7 +123,6 @@ session_start();
         $email = $_POST["email"];
         $pass= $_POST["pass"];
         $password_hash = password_hash($pass, PASSWORD_BCRYPT);
-
         if(!empty ($user_name) && !empty($email) && !empty($pass) && !is_numeric($user_name))
         {
             $query=$con->prepare("SELECT * FROM users WHERE email=:email");
@@ -134,9 +134,7 @@ session_start();
             if(rowCount() == 0){
             // save to data pase 
             $query = "insert into users (user_name,email,password) values ('$user_name', '$email', '$hash')";
-
             mysqli_query($con,$query);
-
            header("location: login.php ");
            die;
         }else
@@ -152,14 +150,11 @@ session_start();
         $user_name =$_POST["user_name"];
         $email = $_POST["email"];
         $pass= $_POST["pass"];
-
         if(!empty ($user_name) && !empty($email) && !empty($pass) && !is_numeric($user_name))
         {
             // save to data pase 
             $query = "insert into users (user_name,email,password) values ('$user_name', '$email', '$pass')";
-
             mysqli_query($con,$query);
-
            header("location: login.php ");
            die;
         }else
@@ -169,4 +164,3 @@ session_start();
     } -->
 
  
-		
