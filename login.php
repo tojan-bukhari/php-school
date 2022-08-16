@@ -1,6 +1,5 @@
 <?php 
-session_start();
-
+    session_start();
     include("connection.php");
     include("functions.php");
 
@@ -18,9 +17,9 @@ session_start();
         $row = mysqli_fetch_assoc($rs);
         if(password_verify($password,$row['password'])){
           echo "Password verified";
-          $_SESSION['user_id'] = $row['id'];
+          $_SESSION['user_id']=$row['id'];
           echo $_SESSION['user_id'];
-          if($_SESSION['user_id']==16){
+          if($_SESSION['user_id']==1){
             header('location: admin.php');
           }else {
             header('location: user.php');
@@ -47,7 +46,6 @@ session_start();
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <title>Login</title>
-<link rel="stylesheet" href="login.css">
 </head>
 <body style="background-color:#eee;text-align:center">
 <section class="vh-100 gradient-custom" ><?php if($message!="") { echo $message; } ?>
@@ -62,7 +60,6 @@ session_start();
 
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
               <p class="text-white-50 mb-5">Please enter your login and password!</p>
-              <?php if($message!="") { echo $message; } ?>
 
               <div class="form-outline form-white mb-4">
                 <input type="email" name="email" id="typeEmailX" class="form-control form-control-lg"></td>

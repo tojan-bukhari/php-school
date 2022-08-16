@@ -1,4 +1,3 @@
-
 <?php
 //fetch.php
 include("connection.php");
