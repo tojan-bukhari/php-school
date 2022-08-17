@@ -16,9 +16,15 @@
       if($numRows  == 1){
         $row = mysqli_fetch_assoc($rs);
         if(password_verify($password,$row['password'])){
+<<<<<<< HEAD
           // echo "Password verified";
           $_SESSION['user_id']=$row['id'];
           $_SESSION['user_name']=$row['user_name'];
+=======
+          echo "Password verified";
+          $_SESSION['user_id']=$row['id'];
+          echo $_SESSION['user_id'];
+>>>>>>> 8722efd32174249bebb75d821bb6051a290c77e8
           if($_SESSION['user_id']==1){
             header('location: admin.php');
           }else {
@@ -67,7 +73,10 @@
               
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
               <p class="text-white-50 mb-5">Please enter your login and password!</p>
+<<<<<<< HEAD
               <?php if($message!="") { echo'<div class="alert alert-danger" role="alert">'.$message.'</div>'; } ?>
+=======
+>>>>>>> 8722efd32174249bebb75d821bb6051a290c77e8
 
               <div class="form-outline form-white mb-4">
                 <input type="email" name="email" id="typeEmailX" class="form-control form-control-lg"></td>
@@ -81,6 +90,10 @@
 
               <button name="submit" value="Submit" class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
               
+<<<<<<< HEAD
+=======
+              <?php if($message!="") { echo'<div class="alert alert-success">'.$message.'</div>'; } ?>
+>>>>>>> 8722efd32174249bebb75d821bb6051a290c77e8
 
               <div class="d-flex justify-content-center text-center mt-4 pt-1">
                 <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>

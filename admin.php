@@ -50,6 +50,7 @@ while($row = mysqli_fetch_array($result)){
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
   body
   {
@@ -194,7 +195,6 @@ while($row = mysqli_fetch_array($result)){
  $(document).ready(function(){
   
   fetch_data();
-
   function fetch_data()
   {
    var dataTable = $('#user_data').DataTable({
@@ -225,7 +225,6 @@ while($row = mysqli_fetch_array($result)){
     $('#alert_message').html('');
    }, 5000);
   }
-
   $(document).on('blur', '.update', function(){
    var id = $(this).data("id");
    var column_name = $(this).data("column");
