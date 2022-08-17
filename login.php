@@ -1,6 +1,5 @@
 <?php 
-session_start();
-
+    session_start();
     include("connection.php");
     include("functions.php");
 
@@ -17,13 +16,20 @@ session_start();
       if($numRows  == 1){
         $row = mysqli_fetch_assoc($rs);
         if(password_verify($password,$row['password'])){
-          echo "Password verified";
-          $_SESSION['user_id'] = $row['id'];
-          echo $_SESSION['user_id'];
-          if($_SESSION['user_id']==16){
+          // echo "Password verified";
+          $_SESSION['user_id']=$row['id'];
+          $_SESSION['user_name']=$row['user_name'];
+          if($_SESSION['user_id']==1){
             header('location: admin.php');
           }else {
+            if($row['active']==1){
+             $message="user is acive";
+            //  alert("JavaScript Alert Box by PHP");
             header('location: user.php');
+            }else{
+              $message="user is not active";
+            }
+            
           }
           // 
         }
@@ -47,10 +53,9 @@ session_start();
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <title>Login</title>
-<link rel="stylesheet" href="login.css">
 </head>
 <body style="background-color:#eee;text-align:center">
-<section class="vh-100 gradient-custom" ><?php if($message!="") { echo $message; } ?>
+<section class="vh-100 gradient-custom" >
 <form method="post" style="background-color:#fff;text-align:center">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -59,10 +64,10 @@ session_start();
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
-
+              
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
               <p class="text-white-50 mb-5">Please enter your login and password!</p>
-              <?php if($message!="") { echo $message; } ?>
+              <?php if($message!="") { echo'<div class="alert alert-danger" role="alert">'.$message.'</div>'; } ?>
 
               <div class="form-outline form-white mb-4">
                 <input type="email" name="email" id="typeEmailX" class="form-control form-control-lg"></td>
@@ -75,6 +80,7 @@ session_start();
               </div>
 
               <button name="submit" value="Submit" class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+              
 
               <div class="d-flex justify-content-center text-center mt-4 pt-1">
                 <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>

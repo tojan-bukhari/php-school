@@ -2,7 +2,7 @@
 <?php
 //fetch.php
 include("connection.php");
-$columns = array('user_name', 'email');
+$columns = array('user_name', 'email','active');
 
 $query = "SELECT * FROM users ";
 
@@ -11,6 +11,7 @@ if(isset($_POST["search"]["value"]))
  $query .= '
  WHERE user_name LIKE "%'.$_POST["search"]["value"].'%" 
  OR email LIKE "%'.$_POST["search"]["value"].'%" 
+ OR active LIKE "%'.$_POST["search"]["value"].'%"
  ';
 }
 
@@ -37,13 +38,24 @@ $result = mysqli_query($con, $query . $query1);
 
 $data = array();
 
-while($row = mysqli_fetch_array($result))
-{
- $sub_array = array();
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="username">' . $row["user_name"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="email">' . $row["email"] . '</div>';
- $sub_array[] = '<button type="button" name="delete" class="btn btn-danger btn-xs delete" id="'.$row["id"].'">Delete</button>';
- $data[] = $sub_array;
+while($row = mysqli_fetch_array($result)){
+    
+if($row['active'] == 0){
+    $sub_array = array();
+    $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="username">' . $row["user_name"] . '</div>';
+    $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="email">' . $row["email"] . '</div>';
+    $sub_array[] = '<button type="button" name="delete" class="btn btn-danger btn-xs delete" id="'.$row["id"].'">Delete</button>';
+    $sub_array[] = '<button type="button" name="active" value="off" class="btn btn-light active" id="'.$row["id"].'">Active</button>';
+    $data[] = $sub_array;
+}else{
+    $sub_array = array();
+    $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="username">' . $row["user_name"] . '</div>';
+    $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="email">' . $row["email"] . '</div>';
+    $sub_array[] = '<button type="button" name="delete" class="btn btn-danger btn-xs delete" id="'.$row["id"].'">Delete</button>';
+    $sub_array[] ='<button type="button" name="active" value="on" class="btn btn-success active" id="'.$row["id"].'">Active</button>'; 
+    $data[] = $sub_array;
+    
+}
 }
 
 function get_all_data($con)
